@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    // Todo : proje başladıktan sonra, git uset değiştirilecek.
+    // Todo : Commitler bu sebeple gözükmüyor.
     public static bool gameStarted;
     public static Vector2 bottomLeft;
     public static bool gameOver;
