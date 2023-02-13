@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    // Todo : proje başladıktan sonra, git uset değiştirilecek.
+    // Todo : Commitler bu sebeple gözükmüyor.
     [SerializeField] private int scorePonit = 10;
     private int highPonit = 0;
     public GameObject scorePanel;
