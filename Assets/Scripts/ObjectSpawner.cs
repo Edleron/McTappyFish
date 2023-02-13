@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
+    // Todo : proje başladıktan sonra, git uset değiştirilecek.
+    // Todo : Commitler bu sebeple gözükmüyor.
     public GameObject obstacle;
     public float lifeTime = 3.5f;
     public float maxY;
