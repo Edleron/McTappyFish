@@ -94,7 +94,7 @@ public class FishMovement : MonoBehaviour
             _uiManager.addToScore();
             AudioSource.PlayClipAtPoint(_sfxClip[1], Camera.main.transform.position);
         }
-        else if (other.gameObject.CompareTag("Column"))
+        else if (other.gameObject.CompareTag("Column") && GameManager.gameOver == false)
         {
             _gameManager.GameOver();
             GameOver();
