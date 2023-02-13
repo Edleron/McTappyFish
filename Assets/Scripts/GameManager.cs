@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         _uiManager.gameObject.transform.GetChild(1).gameObject.SetActive(true);
+        _uiManager.panelToScore();
         gameOver = true;
     }
 }
