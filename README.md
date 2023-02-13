@@ -1,9 +1,8 @@
-
 # README
 
 ## MC QUIZ GAME
 
-This README is a guide representing Unity worksheets and sample code. This game is the fifth prototype clone game of edleron. I would like to thank game dev tv for their efforts.
+This README is a guide representing Unity worksheets and sample code. This game is the sixth prototype clone game of edleron. I would like to thank WeArePanteon for their efforts.
 
 ## What is this repository for?
 
@@ -30,3 +29,4 @@ https://edleron.com
 
 * Unity Webgl Link
 * İtch.io Webgl Link
+* [WeArePanteon Links](https://www.youtube.com/playlist?list=PLCCdMELNzOfjn104WCn_CoRXaBqK7XWBS)
