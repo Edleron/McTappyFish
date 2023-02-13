@@ -6,6 +6,7 @@ public class FishMovement : MonoBehaviour
 {
     Rigidbody2D _myRb;
     Animator _anim;
+    AudioSource _sfxSource;
     SpriteRenderer _sp;
     [SerializeField] private float _speed = 9.0f;
     public UIManager _uiManager;
@@ -15,12 +16,15 @@ public class FishMovement : MonoBehaviour
     private int maxAngle = 20;
     private int minAngle = -60;
     private int angle = 0;
+
+    public List<AudioClip> _sfxClip = new List<AudioClip>();
+
     void Start()
     {
         _myRb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _sp = GetComponent<SpriteRenderer>();
-
+        _sfxSource = GetComponent<AudioSource>();
         _myRb.gravityScale = 0;
     }
 
@@ -45,7 +49,7 @@ public class FishMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-
+            AudioSource.PlayClipAtPoint(_sfxClip[0], Camera.main.transform.position);
             if (GameManager.gameStarted == false)
             {
                 _myRb.gravityScale = 4f;
@@ -88,6 +92,7 @@ public class FishMovement : MonoBehaviour
         if (other.CompareTag("Obstacle"))
         {
             _uiManager.addToScore();
+            AudioSource.PlayClipAtPoint(_sfxClip[1], Camera.main.transform.position);
         }
         else if (other.gameObject.CompareTag("Column"))
         {
@@ -110,6 +115,7 @@ public class FishMovement : MonoBehaviour
 
     private void GameOver()
     {
+        AudioSource.PlayClipAtPoint(_sfxClip[2], Camera.main.transform.position);
         transform.rotation = Quaternion.Euler(0, 0, -90);
         _anim.enabled = false;
         _sp.sprite = fishDie;
