@@ -13,9 +13,14 @@ public class ObjectSpawner : MonoBehaviour
     private float randomY;
     private float timer;
 
+    private void Start()
+    {
+
+    }
+
     private void Update()
     {
-        if (GameManager.gameOver == false)
+        if (GameManager.gameOver == false && GameManager.gameStarted == true)
         {
             timer += Time.deltaTime;
             if (timer > lifeTime)

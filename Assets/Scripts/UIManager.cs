@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private int scorePonit = 10;
     private int highPonit = 0;
     public GameObject scorePanel;
+    public GameObject readyPanel;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI panelScore;
     public TextMeshProUGUI panelHigh;
@@ -42,6 +43,11 @@ public class UIManager : MonoBehaviour
 
         }
         panelHigh.text = PlayerPrefs.GetInt("highScore").ToString();
+    }
+
+    public void readyPanelState(bool value)
+    {
+        readyPanel.SetActive(value);
     }
 
     public void restartGame()

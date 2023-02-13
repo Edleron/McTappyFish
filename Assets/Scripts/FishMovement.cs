@@ -10,6 +10,7 @@ public class FishMovement : MonoBehaviour
     [SerializeField] private float _speed = 9.0f;
     public UIManager _uiManager;
     public GameManager _gameManager;
+    public ObjectSpawner _objectSpawner;
     public Sprite fishDie;
     private int maxAngle = 20;
     private int minAngle = -60;
@@ -19,6 +20,8 @@ public class FishMovement : MonoBehaviour
         _myRb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _sp = GetComponent<SpriteRenderer>();
+
+        _myRb.gravityScale = 0;
     }
 
     // Update is called once per frame
@@ -42,8 +45,20 @@ public class FishMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            _myRb.velocity = Vector2.zero;
-            _myRb.velocity = new Vector2(_myRb.velocity.x, _speed);
+
+            if (GameManager.gameStarted == false)
+            {
+                _myRb.gravityScale = 4f;
+                _myRb.velocity = Vector2.zero;
+                _myRb.velocity = new Vector2(_myRb.velocity.x, _speed);
+                _objectSpawner.InstantiateObstacle();
+                _gameManager.GameStarted();
+            }
+            else
+            {
+                _myRb.velocity = Vector2.zero;
+                _myRb.velocity = new Vector2(_myRb.velocity.x, _speed);
+            }
         }
     }
 

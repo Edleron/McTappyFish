@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static bool gameStarted;
     public static Vector2 bottomLeft;
     public static bool gameOver;
 
@@ -16,8 +17,16 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        _uiManager.readyPanelState(true);
         _uiManager.gameObject.transform.GetChild(1).gameObject.SetActive(false);
         gameOver = false;
+        gameStarted = false;
+    }
+
+    public void GameStarted()
+    {
+        gameStarted = true;
+        _uiManager.readyPanelState(false);
     }
 
     public void GameOver()
