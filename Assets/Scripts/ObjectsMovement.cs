@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ObjectsMovement : MonoBehaviour
 {
+    // Todo : proje başladıktan sonra, git uset değiştirilecek.
+    // Todo : Commitler bu sebeple gözükmüyor.
     public float speed;
     private BoxCollider2D box;
     private float groundWith;
