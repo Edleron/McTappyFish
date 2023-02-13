@@ -13,10 +13,12 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI panelScore;
     public TextMeshProUGUI panelHigh;
+    public GameObject newHighImage;
 
     void Start()
     {
         scorePonit = 0;
+        newHighImage.SetActive(false);
         scoreText.text = scorePonit.ToString();
         panelScore.text = scorePonit.ToString();
         panelHigh.text = highPonit.ToString();
@@ -38,6 +40,7 @@ public class UIManager : MonoBehaviour
         Debug.Log(scorePonit + " : " + highPonit);
         if (scorePonit > highPonit)
         {
+            newHighImage.SetActive(true);
             highPonit = scorePonit;
             PlayerPrefs.SetInt("highScore", highPonit);
 

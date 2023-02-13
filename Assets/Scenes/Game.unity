@@ -374,6 +374,7 @@ MonoBehaviour:
   scoreText: {fileID: 1372135019}
   panelScore: {fileID: 465219036}
   panelHigh: {fileID: 73045997}
+  newHighImage: {fileID: 1967955887}
 --- !u!1 &73045995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1517,7 +1518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &811088814
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1612,7 +1613,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -415}
+  m_AnchoredPosition: {x: 0, y: -495}
   m_SizeDelta: {x: 624.00366, y: 626}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1114776996
@@ -2019,7 +2020,7 @@ GameObject:
   - component: {fileID: 2051894154}
   - component: {fileID: 2051894153}
   m_Layer: 5
-  m_Name: madal
+  m_Name: medal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
