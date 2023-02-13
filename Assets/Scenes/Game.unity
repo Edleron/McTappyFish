@@ -375,6 +375,12 @@ MonoBehaviour:
   panelScore: {fileID: 465219036}
   panelHigh: {fileID: 73045997}
   newHighImage: {fileID: 1967955887}
+  medalSprite:
+  - {fileID: 1207154854, guid: 4c5b6b7c6b1b38e4ab4a2844eb188adf, type: 3}
+  - {fileID: -1990070807, guid: 4c5b6b7c6b1b38e4ab4a2844eb188adf, type: 3}
+  - {fileID: -272954162, guid: 4c5b6b7c6b1b38e4ab4a2844eb188adf, type: 3}
+  - {fileID: -520976791, guid: 4c5b6b7c6b1b38e4ab4a2844eb188adf, type: 3}
+  medalImage: {fileID: 2051894153}
 --- !u!1 &73045995
 GameObject:
   m_ObjectHideFlags: 0

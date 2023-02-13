@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +15,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI panelScore;
     public TextMeshProUGUI panelHigh;
     public GameObject newHighImage;
+    public List<Sprite> medalSprite = new List<Sprite>();
+    public Image medalImage;
 
     void Start()
     {
@@ -32,6 +35,7 @@ public class UIManager : MonoBehaviour
             scorePonit++;
             scoreText.text = scorePonit.ToString();
             panelScore.text = scorePonit.ToString();
+            setMadelState();
         }
     }
 
@@ -43,7 +47,6 @@ public class UIManager : MonoBehaviour
             newHighImage.SetActive(true);
             highPonit = scorePonit;
             PlayerPrefs.SetInt("highScore", highPonit);
-
         }
         panelHigh.text = PlayerPrefs.GetInt("highScore").ToString();
     }
@@ -51,6 +54,29 @@ public class UIManager : MonoBehaviour
     public void readyPanelState(bool value)
     {
         readyPanel.SetActive(value);
+    }
+
+    private void setMadelState()
+    {
+        if (scorePonit > 0 && scorePonit <= 2)
+        {
+            medalImage.sprite = medalSprite[0];
+        }
+
+        if (scorePonit > 2 && scorePonit <= 4)
+        {
+            medalImage.sprite = medalSprite[1];
+        }
+
+        if (scorePonit > 4 && scorePonit <= 6)
+        {
+            medalImage.sprite = medalSprite[2];
+        }
+
+        if (scorePonit > 6)
+        {
+            medalImage.sprite = medalSprite[3];
+        }
     }
 
     public void restartGame()
