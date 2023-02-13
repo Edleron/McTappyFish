@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static Vector2 bottomLeft;
+    public static bool gameOver;
+
+    public UIManager _uiManager;
+
+    private void Awake()
     {
-        
+        bottomLeft = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        _uiManager.gameObject.transform.GetChild(1).gameObject.SetActive(false);
+        gameOver = false;
+    }
+
+    public void GameOver()
+    {
+        _uiManager.gameObject.transform.GetChild(1).gameObject.SetActive(true);
+        gameOver = true;
     }
 }
