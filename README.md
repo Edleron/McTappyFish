@@ -1,6 +1,6 @@
 # README
 
-## MC QUIZ GAME
+## MC TAPPY FISH GAME
 
 This README is a guide representing Unity worksheets and sample code. This game is the sixth prototype clone game of edleron. I would like to thank WeArePanteon for their efforts.
 
