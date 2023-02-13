@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class FishMovement : MonoBehaviour
 {
+
+    // Todo : proje başladıktan sonra, git uset değiştirilecek.
+    // Todo : Commitler bu sebeple gözükmüyor.
     Rigidbody2D _myRb;
     Animator _anim;
     AudioSource _sfxSource;
