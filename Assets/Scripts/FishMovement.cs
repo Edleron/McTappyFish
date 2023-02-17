@@ -5,28 +5,33 @@ using UnityEngine;
 public class FishMovement : MonoBehaviour
 {
 
-    // Todo : proje başladıktan sonra, git uset değiştirilecek.
-    // Todo : Commitler bu sebeple gözükmüyor.
-    Rigidbody2D _myRb;
-    Animator _anim;
-    AudioSource _sfxSource;
-    SpriteRenderer _sp;
-    [SerializeField] private float _speed = 9.0f;
-    public UIManager _uiManager;
-    public GameManager _gameManager;
-    public ObjectSpawner _objectSpawner;
-    public Sprite fishDie;
-    private int maxAngle = 20;
-    private int minAngle = -60;
-    private int angle = 0;
+    #region Event-Delegate System
+    public delegate void ourEventDelegate();
+    public static event ourEventDelegate scoreState;
+    public static event ourEventDelegate gameStarted;
+    public static event ourEventDelegate gameFinished;
+    public static event ourEventDelegate instantObstacle;
+    #endregion
 
+    #region Component Variables
+    private Rigidbody2D _myRb;
+    private Animator _anim;
+    private AudioSource _sfxSource;
+    #endregion
+
+    #region Constant Variables
+    private float _speed = 9.0f;
+    private int angle = 0;
+    #endregion
+
+    #region Variables
     public List<AudioClip> _sfxClip = new List<AudioClip>();
+    #endregion
 
     void Start()
     {
         _myRb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
-        _sp = GetComponent<SpriteRenderer>();
         _sfxSource = GetComponent<AudioSource>();
         _myRb.gravityScale = 0;
     }
@@ -34,7 +39,7 @@ public class FishMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.gameOver == false)
+        if (GameManager.isGameOver == false)
         {
             TouchPlease();
         }
@@ -42,7 +47,7 @@ public class FishMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager.gameOver == false)
+        if (GameManager.isGameOver == false)
         {
             FishRotate();
         }
@@ -53,13 +58,13 @@ public class FishMovement : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             AudioSource.PlayClipAtPoint(_sfxClip[0], Camera.main.transform.position);
-            if (GameManager.gameStarted == false)
+            if (GameManager.isGameStarted == false)
             {
                 _myRb.gravityScale = 4f;
                 _myRb.velocity = Vector2.zero;
                 _myRb.velocity = new Vector2(_myRb.velocity.x, _speed);
-                _objectSpawner.InstantiateObstacle();
-                _gameManager.GameStarted();
+                instantObstacle();
+                gameStarted();
             }
             else
             {
@@ -71,6 +76,9 @@ public class FishMovement : MonoBehaviour
 
     private void FishRotate()
     {
+        int maxAngle = 20;
+        int minAngle = -60;
+
         if (_myRb.velocity.y > 0)
         {
             if (angle <= maxAngle)
@@ -94,12 +102,13 @@ public class FishMovement : MonoBehaviour
     {
         if (other.CompareTag("Obstacle"))
         {
-            _uiManager.addToScore();
+            //_uiManager.addToScore();
+            scoreState();
             AudioSource.PlayClipAtPoint(_sfxClip[1], Camera.main.transform.position);
         }
-        else if (other.gameObject.CompareTag("Column") && GameManager.gameOver == false)
+        else if (other.gameObject.CompareTag("Column") && GameManager.isGameOver == false)
         {
-            _gameManager.GameOver();
+            gameFinished();
             GameOver();
         }
     }
@@ -108,9 +117,9 @@ public class FishMovement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            if (GameManager.gameOver == false)
+            if (GameManager.isGameOver == false)
             {
-                _gameManager.GameOver();
+                gameFinished();
             }
             GameOver();
         }
@@ -121,6 +130,5 @@ public class FishMovement : MonoBehaviour
         AudioSource.PlayClipAtPoint(_sfxClip[2], Camera.main.transform.position);
         transform.rotation = Quaternion.Euler(0, 0, -90);
         _anim.enabled = false;
-        _sp.sprite = fishDie;
     }
 }
