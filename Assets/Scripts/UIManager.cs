@@ -7,77 +7,72 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    // Todo : proje başladıktan sonra, git uset değiştirilecek.
-    // Todo : Commitler bu sebeple gözükmüyor.
-    [SerializeField] private int scorePonit = 10;
+    private int scorePonit = 10;
     private int highPonit = 0;
-    public GameObject scorePanel;
-    public GameObject readyPanel;
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI panelScore;
-    public TextMeshProUGUI panelHigh;
-    public GameObject newHighImage;
+    public List<TextMeshProUGUI> textList = new List<TextMeshProUGUI>();
     public List<Sprite> medalSprite = new List<Sprite>();
-    public Image medalImage;
+    public List<Image> imageSprite = new List<Image>();
 
     void Start()
     {
         scorePonit = 0;
-        newHighImage.SetActive(false);
-        scoreText.text = scorePonit.ToString();
-        panelScore.text = scorePonit.ToString();
-        panelHigh.text = highPonit.ToString();
+        imageSprite[0].gameObject.SetActive(false);
+        textList[0].text = scorePonit.ToString();
+        textList[1].text = scorePonit.ToString();
+        textList[2].text = highPonit.ToString();
         highPonit = PlayerPrefs.GetInt("highScore");
+        this.gameObject.transform.GetChild(1).gameObject.SetActive(false);
     }
 
-    public void addToScore()
+    public void scoreViewer()
     {
-        if (GameManager.gameOver == false)
+        if (GameManager.isGameOver == false)
         {
             scorePonit++;
-            scoreText.text = scorePonit.ToString();
-            panelScore.text = scorePonit.ToString();
-            setMadelState();
+            madelViewer();
+            textList[0].text = scorePonit.ToString();
+            textList[1].text = scorePonit.ToString();
         }
     }
 
-    public void panelToScore()
+    public void startedViewer(bool value)
     {
-        Debug.Log(scorePonit + " : " + highPonit);
+        this.gameObject.transform.GetChild(2).gameObject.SetActive(value);
+    }
+
+    public void finishedViewer()
+    {
+        //Debug.Log(scorePonit + " : " + highPonit);
         if (scorePonit > highPonit)
         {
-            newHighImage.SetActive(true);
+            imageSprite[0].gameObject.SetActive(true);
             highPonit = scorePonit;
             PlayerPrefs.SetInt("highScore", highPonit);
         }
-        panelHigh.text = PlayerPrefs.GetInt("highScore").ToString();
+        textList[2].text = PlayerPrefs.GetInt("highScore").ToString();
+        this.gameObject.transform.GetChild(1).gameObject.SetActive(true);
     }
 
-    public void readyPanelState(bool value)
-    {
-        readyPanel.SetActive(value);
-    }
-
-    private void setMadelState()
+    private void madelViewer()
     {
         if (scorePonit > 0 && scorePonit <= 2)
         {
-            medalImage.sprite = medalSprite[0];
+            imageSprite[1].sprite = medalSprite[0];
         }
 
         if (scorePonit > 2 && scorePonit <= 4)
         {
-            medalImage.sprite = medalSprite[1];
+            imageSprite[1].sprite = medalSprite[1];
         }
 
         if (scorePonit > 4 && scorePonit <= 6)
         {
-            medalImage.sprite = medalSprite[2];
+            imageSprite[1].sprite = medalSprite[2];
         }
 
         if (scorePonit > 6)
         {
-            medalImage.sprite = medalSprite[3];
+            imageSprite[1].sprite = medalSprite[3];
         }
     }
 
