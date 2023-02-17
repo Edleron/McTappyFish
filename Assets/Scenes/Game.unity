@@ -249,9 +249,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacle: {fileID: 4533482199305732871, guid: cba7072d46ca5b040a4acdef9fb5b232, type: 3}
-  lifeTime: 2.5
-  maxY: 0.25
-  minY: -5.25
 --- !u!1 &71356825
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +264,7 @@ GameObject:
   - component: {fileID: 71356830}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: UICanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -368,19 +365,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9503dc69163199341824c5591f08ed75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scorePonit: 10
-  scorePanel: {fileID: 1548572633}
-  readyPanel: {fileID: 811088813}
-  scoreText: {fileID: 1372135019}
-  panelScore: {fileID: 465219036}
-  panelHigh: {fileID: 73045997}
-  newHighImage: {fileID: 1967955887}
+  textList:
+  - {fileID: 1372135019}
+  - {fileID: 465219036}
+  - {fileID: 73045997}
   medalSprite:
   - {fileID: 1207154854, guid: 4c5b6b7c6b1b38e4ab4a2844eb188adf, type: 3}
   - {fileID: -1990070807, guid: 4c5b6b7c6b1b38e4ab4a2844eb188adf, type: 3}
   - {fileID: -272954162, guid: 4c5b6b7c6b1b38e4ab4a2844eb188adf, type: 3}
   - {fileID: -520976791, guid: 4c5b6b7c6b1b38e4ab4a2844eb188adf, type: 3}
-  medalImage: {fileID: 2051894153}
+  imageSprite:
+  - {fileID: 1967955889}
+  - {fileID: 2051894153}
 --- !u!1 &73045995
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,7 +845,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40f765aee9a1944f9b68f595c541601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
 --- !u!1 &272730232
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,7 +1027,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40f765aee9a1944f9b68f595c541601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
 --- !u!61 &460738082
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1503,11 +1497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b66ec5e9b3d55c24bade08cf5628007a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 15
-  _uiManager: {fileID: 71356830}
-  _gameManager: {fileID: 1296663622}
-  _objectSpawner: {fileID: 32651564}
-  fishDie: {fileID: -1766002543, guid: 4c5b6b7c6b1b38e4ab4a2844eb188adf, type: 3}
   _sfxClip:
   - {fileID: 8300000, guid: 1c10062f8adfb9d42b127fcb509c0469, type: 3}
   - {fileID: 8300000, guid: c1efd7d7580333745a746f56cfbcbee9, type: 3}
@@ -1771,6 +1760,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1296663623}
   - component: {fileID: 1296663622}
+  - component: {fileID: 1296663624}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -1790,7 +1780,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fdab742fe063154db734c4ce2a10df3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _uiManager: {fileID: 71356830}
 --- !u!4 &1296663623
 Transform:
   m_ObjectHideFlags: 0
@@ -1806,6 +1795,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1296663624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296663621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c2d96a931d1c840b8cc298193c688c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1372135017
 GameObject:
   m_ObjectHideFlags: 0
