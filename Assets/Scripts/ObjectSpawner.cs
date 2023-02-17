@@ -4,30 +4,23 @@ using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
 {
-    // Todo : proje başladıktan sonra, git uset değiştirilecek.
-    // Todo : Commitler bu sebeple gözükmüyor.
     public GameObject obstacle;
-    public float lifeTime = 3.5f;
-    public float maxY;
-    public float minY;
+    private float lifeTime = 2.5f;
 
-
-    private float randomY;
     private float timer;
 
     private void Start()
     {
-
+        FishMovement.instantObstacle += InstantiateObstacle;
     }
 
     private void Update()
     {
-        if (GameManager.gameOver == false && GameManager.gameStarted == true)
+        if (GameManager.isGameOver == false && GameManager.isGameStarted == true)
         {
             timer += Time.deltaTime;
             if (timer > lifeTime)
             {
-                randomY = Random.Range(minY, maxY);
                 InstantiateObstacle();
                 timer = 0;
             }
@@ -36,7 +29,9 @@ public class ObjectSpawner : MonoBehaviour
 
     public void InstantiateObstacle()
     {
+        float yPos = Random.Range(0.25f, -5.25f);
         GameObject newObstacle = Instantiate(obstacle);
-        newObstacle.transform.position = new Vector2(transform.position.x, randomY);
+        newObstacle.transform.position = new Vector2(transform.position.x, yPos);
+        Debug.Log("Event - Delegate Obstacle Intantiate Statements Process Featrues");
     }
 }
