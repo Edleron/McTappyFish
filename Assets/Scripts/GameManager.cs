@@ -4,37 +4,44 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Todo : proje başladıktan sonra, git uset değiştirilecek.
-    // Todo : Commitler bu sebeple gözükmüyor.
-    public static bool gameStarted;
-    public static Vector2 bottomLeft;
-    public static bool gameOver;
-
-    public UIManager _uiManager;
+    public static Vector2 camArea;
+    public static bool isGameStarted;
+    public static bool isGameOver;
+    private UIManager _uiManager;
 
     private void Awake()
     {
-        bottomLeft = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
+        camArea = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
+        _uiManager = _uiManager == null ? GameObject.FindGameObjectWithTag("UICanvas").GetComponent<UIManager>() : null;
     }
 
     private void Start()
     {
-        _uiManager.readyPanelState(true);
-        _uiManager.gameObject.transform.GetChild(1).gameObject.SetActive(false);
-        gameOver = false;
-        gameStarted = false;
+        isGameOver = false;
+        isGameStarted = false;
+        _uiManager.startedViewer(true);
+        FishMovement.scoreState += AddToScore;
+        FishMovement.gameStarted += GameStarted;
+        FishMovement.gameFinished += GameFinished;
+    }
+
+    private void AddToScore()
+    {
+        _uiManager.scoreViewer();
+        Debug.Log("Event - Delegate Score Test");
     }
 
     public void GameStarted()
     {
-        gameStarted = true;
-        _uiManager.readyPanelState(false);
+        isGameStarted = true;
+        _uiManager.startedViewer(false);
+        Debug.Log("Event - Delegate Game Started");
     }
 
-    public void GameOver()
+    public void GameFinished()
     {
-        _uiManager.gameObject.transform.GetChild(1).gameObject.SetActive(true);
-        _uiManager.panelToScore();
-        gameOver = true;
+        isGameOver = true;
+        _uiManager.finishedViewer();
+        Debug.Log("Event - Delegate Game Finished");
     }
 }
