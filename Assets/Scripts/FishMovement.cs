@@ -55,23 +55,28 @@ public class FishMovement : MonoBehaviour
 
     private void TouchPlease()
     {
+
         if (Input.GetMouseButtonDown(0))
         {
-            AudioSource.PlayClipAtPoint(_sfxClip[0], Camera.main.transform.position);
-            if (GameManager.isGameStarted == false)
+            if (GameManager.isGameOver == false)
             {
-                _myRb.gravityScale = 4f;
-                _myRb.velocity = Vector2.zero;
-                _myRb.velocity = new Vector2(_myRb.velocity.x, _speed);
-                instantObstacle();
-                gameStarted();
-            }
-            else
-            {
-                _myRb.velocity = Vector2.zero;
-                _myRb.velocity = new Vector2(_myRb.velocity.x, _speed);
+                if (GameManager.isGameStarted == false)
+                {
+                    _myRb.gravityScale = 4f;
+                    _myRb.velocity = Vector2.zero;
+                    _myRb.velocity = new Vector2(_myRb.velocity.x, _speed);
+                    instantObstacle();
+                    gameStarted();
+                }
+                else
+                {
+                    _myRb.velocity = Vector2.zero;
+                    _myRb.velocity = new Vector2(_myRb.velocity.x, _speed);
+                    AudioSource.PlayClipAtPoint(_sfxClip[0], Camera.main.transform.position);
+                }
             }
         }
+
     }
 
     private void FishRotate()

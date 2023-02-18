@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static Vector2 camArea;
     public static bool isGameStarted;
     public static bool isGameOver;
+    private bool isInitialized = false;
     private UIManager _uiManager;
 
     private void Awake()
@@ -18,11 +19,30 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         isGameOver = false;
+        isInitialized = true;
         isGameStarted = false;
         _uiManager.startedViewer(true);
         FishMovement.scoreState += AddToScore;
         FishMovement.gameStarted += GameStarted;
         FishMovement.gameFinished += GameFinished;
+    }
+
+    private void OnEnable()
+    {
+        if (isInitialized)
+        {
+            FishMovement.scoreState += AddToScore;
+            FishMovement.gameStarted += GameStarted;
+            FishMovement.gameFinished += GameFinished;
+        }
+    }
+
+
+    private void OnDisable()
+    {
+        FishMovement.scoreState -= AddToScore;
+        FishMovement.gameStarted -= GameStarted;
+        FishMovement.gameFinished -= GameFinished;
     }
 
     private void AddToScore()

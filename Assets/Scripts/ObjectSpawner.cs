@@ -8,10 +8,24 @@ public class ObjectSpawner : MonoBehaviour
     private float lifeTime = 2.5f;
 
     private float timer;
+    private bool isInitialized = false;
 
     private void Start()
     {
+        isInitialized = true;
         FishMovement.instantObstacle += InstantiateObstacle;
+    }
+
+    private void OnEnable()
+    {
+        if (isInitialized)
+            FishMovement.instantObstacle += InstantiateObstacle;
+    }
+
+
+    private void OnDisable()
+    {
+        FishMovement.instantObstacle -= InstantiateObstacle;
     }
 
     private void Update()
